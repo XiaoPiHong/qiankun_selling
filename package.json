@@ -7,9 +7,36 @@
     "./packages/*"
   ],
   "scripts": {
+    "prepare": "husky install",
+    "commit": "cz",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies":{
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "commitizen": "^4.2.5",
+    "cz-customizable": "^7.0.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.cjs"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "cd packages/main && npm run lint",
+      "cd packages/main && npm run prettier-format"
+    ],
+    "*.{vue,css,sass,scss}": [
+      "cd packages/main && npm run lint:css"
+    ]
+  }
 }
