@@ -5,6 +5,7 @@
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
-  "stylelint.validate": ["css", "less", "scss", "vue"]
+  "stylelint.validate": ["css", "less", "scss", "vue"],
   // "vue.codeActions.enabled": false // 导致vscode保存卡顿，暂时关闭
+  "git.openRepositoryInParentFolders": "always" // 控制是应打开工作区父文件夹中的存储库还是打开的文件
 }
