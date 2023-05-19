@@ -40,6 +40,10 @@ const tabpanes: Array<ITabphane> = reactive([
     id: 'SALE_ALLEGRO_PUBLISH',
     name: 'Allegro产品刊登',
   },
+  {
+    id: 'MAIN_SUPPLIER_INDEX',
+    name: '供应商管理',
+  },
 ])
 const showTabpanes: Array<ITabphane> = reactive([
   {

@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import { registerMicroApps, start, setDefaultMountApp } from 'qiankun'
+// import { registerMicroApps, start, setDefaultMountApp } from 'qiankun'
 import VXETable from 'vxe-table'
 import '@/assets/styles/vxe-table-global.scss'
 import 'virtual:svg-icons-register'
@@ -15,7 +15,7 @@ import dialog from '@/components/dialog/index.vue'
 import i18n from '@/i18n'
 import router from '@/router/index'
 import App from './App.vue'
-import microApps from './micro-app'
+// import microApps from './micro-app'
 
 VXETable.setup({
   size: 'mini',
@@ -35,15 +35,15 @@ app.component('MyForm', form)
 app.component('SvgIcon', svgIcon)
 app.component('MyDialog', dialog)
 
-// 给子应用配置加上loader方法
-const apps = microApps.map((item) => ({
-  ...item,
-}))
-registerMicroApps(apps, {
-  beforeLoad: (app) => Promise.resolve(),
-  beforeMount: (app) => Promise.resolve(),
-  afterMount: (app) => Promise.resolve(),
-  afterUnmount: (app) => Promise.resolve(),
-})
-// setDefaultMountApp('/jquery')
-start()
+// // 给子应用配置加上loader方法
+// const apps = microApps.map((item) => ({
+//   ...item,
+// }))
+// registerMicroApps(apps, {
+//   beforeLoad: (app) => Promise.resolve(),
+//   beforeMount: (app) => Promise.resolve(),
+//   afterMount: (app) => Promise.resolve(),
+//   afterUnmount: (app) => Promise.resolve(),
+// })
+// // setDefaultMountApp('/jquery')
+// start()

@@ -18,3 +18,8 @@ export const SALE = 'SALE'
 export const SALE_ALLEGRO = 'SALE_ALLEGRO'
 /** 销售-allegro-产品刊登 */
 export const SALE_ALLEGRO_PUBLISH = 'SALE_ALLEGRO_PUBLISH'
+
+/** 旧版系统 */
+export const MAIN = 'MAIN'
+/** 旧版系统-产品-供应商-供应商管理 */
+export const MAIN_SUPPLIER_INDEX = 'MAIN_SUPPLIER_INDEX'

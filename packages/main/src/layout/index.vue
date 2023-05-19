@@ -13,6 +13,7 @@
                     :id="dialogToKey.PAGE_TABS_CONTAINER"
                     :key="route.path"
                     :is="Component"
+                    :loadApp="initApp"
                     v-if="route.meta.keepAlive"
                   />
                 </keep-alive>
@@ -20,6 +21,7 @@
                   :id="dialogToKey.PAGE_TABS_CONTAINER"
                   :key="route.path"
                   :is="Component"
+                  @loadApp="initApp"
                   v-if="!route.meta.keepAlive"
                 />
               </router-view>
@@ -35,8 +37,26 @@ import { useRoute } from 'vue-router'
 import layoutHeader from './layoutHeader/index.vue'
 import layoutTabs from './layoutTabs/index.vue'
 import * as dialogToKey from '@/configs/dialog-to-key'
+import { useMicroApp } from '@/utils/micro-app'
 
 const route = useRoute()
+const { loadApp, appMap } = useMicroApp()
+let microApp = null
+const initApp = () => {
+  if (microApp) {
+    microApp.mount()
+  } else {
+    loadApp({
+      name: 'jquery',
+      entry: '//localhost:48149',
+      container: `#jquery-container`,
+      props: {
+        path: 'supplier/index',
+      },
+    })
+    microApp = appMap.jquery
+  }
+}
 </script>
 <style lang="scss" scoped>
 .app {

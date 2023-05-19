@@ -73,6 +73,21 @@ export const constantRoutes: Array<VueRouter.RouteRecordRaw> = [
     ],
   },
   {
+    path: '/main',
+    name: routeNames.MAIN,
+    component: layout,
+    redirect: '/main/supplier/index',
+    meta: { show: true, title: '产品' },
+    children: [
+      {
+        path: 'supplier/index',
+        name: routeNames.MAIN_SUPPLIER_INDEX,
+        meta: { show: true, title: '供应商管理' },
+        component: views.mainSupplierIndex,
+      },
+    ],
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: routeNames.NOT_FOUND,
     component: views.notFound,
