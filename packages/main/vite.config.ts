@@ -75,16 +75,6 @@ export default defineConfig({
       //   changeOrigin: true,
       //   rewrite: (path) => path.replace(/^\/new/, ''),
       // },
-      // '/Content': {
-      //   target: 'http://localhost:48149/Content',
-      //   changeOrigin: true,
-      //   rewrite: (path) => path.replace(/^\/Content/, ''),
-      // },
-      '/': {
-        target: 'http://localhost:48149',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\//, ''),
-      },
     },
   },
 })

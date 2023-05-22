@@ -16,7 +16,7 @@ import router from '@/router/index'
 import App from './App.vue'
 
 VXETable.setup({
-  size: 'mini',
+  size: 'small',
   // 对组件内置的提示语进行国际化翻译
   // @ts-ignore
   i18n: (key, args) => i18n.global.t(key, args),
@@ -24,7 +24,7 @@ VXETable.setup({
 const app = createApp(App)
 app.use(router)
 app.use(VueCookies)
-app.use(ElementPlus, { size: 'small', locale: zhCn })
+app.use(ElementPlus, { size: 'default', locale: zhCn })
 app.use(VXETable)
 app.mount('#app')
 app.component('MyButton', button)

@@ -31,7 +31,7 @@ export default class FormConfig {
   public gutter: number
 
   constructor(props: IFormRenderConfigProps = {}) {
-    this.size = props.size || 'small'
+    this.size = props.size || 'default'
     this.labelPosition = props.labelPosition || 'right'
     this.labelWidth = props.labelWidth || 100
     this.gutter = props.gutter || 16
