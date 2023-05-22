@@ -2,8 +2,8 @@
   <div class="app">
     <el-scrollbar style="width: 100%">
       <div :id="dialogToKey.PAGE_CONTAINER" class="app-container">
-        <layout-header class="app-container__header" />
-        <layout-tabs class="app-container__tabs" />
+        <!-- <layout-header class="app-container__header" /> -->
+        <!-- <layout-tabs class="app-container__tabs" /> -->
         <suspense>
           <div class="app-container__main">
             <el-scrollbar style="height: 100%">
@@ -32,8 +32,8 @@
 </template>
 <script lang="ts" setup>
 import { useRoute } from 'vue-router'
-import layoutHeader from './layoutHeader/index.vue'
-import layoutTabs from './layoutTabs/index.vue'
+// import layoutHeader from './layoutHeader/index.vue'
+// import layoutTabs from './layoutTabs/index.vue'
 import * as dialogToKey from '@/configs/dialog-to-key'
 
 const route = useRoute()
@@ -47,11 +47,8 @@ const route = useRoute()
 .app-container {
   position: relative;
   display: grid;
-  grid-template-areas:
-    'app-container__header'
-    'app-container__tabs'
-    'app-container__main';
-  grid-template-rows: 46px 40px calc(100vh - 46px - 40px);
+  grid-template-areas: 'app-container__main';
+  grid-template-rows: calc(100vh);
   grid-template-columns: 1fr;
   width: 100vw;
   height: 100vh;

@@ -29,7 +29,63 @@
             :min-width="column.minWidth"
             :align="column.align"
             :title="column.label"
-          ></vxe-column>
+          >
+            <template #default="{ row }">
+              <template v-if="column.prop === 'SupplierName'">
+                <div class="text-hidden" :title="row.SupplierName">{{ row.SupplierName }}</div>
+                <div class="text-hidden" :title="row.SupplierAddress">
+                  {{ row.SupplierAddress }}
+                </div>
+              </template>
+              <template v-else-if="column.prop === 'WebSite'">
+                <div class="text-hidden" :title="row.ArrivalPeriod">{{ row.ArrivalPeriod }}</div>
+                <div class="text-hidden" :title="row.WebSite">
+                  <a target="_blank" :href="row.WebSite">{{ row.WebSite }}</a
+                  >{{ row.WebSite ? '天' : '' }}
+                </div>
+              </template>
+              <template v-else-if="column.prop === 'SettlementMethod'">
+                <div
+                  class="text-hidden"
+                  :title="SettlementMethodEnum[row.SettlementMethod] || row.SettlementMethod"
+                >
+                  {{ SettlementMethodEnum[row.SettlementMethod] || row.SettlementMethod }}
+                </div>
+                <div
+                  class="text-hidden"
+                  :title="PaymentMethodEnum[row.PaymentMethod] || row.PaymentMethod"
+                >
+                  {{ PaymentMethodEnum[row.PaymentMethod] || row.PaymentMethod }}
+                </div>
+              </template>
+              <template v-else-if="column.prop === 'BankName'">
+                <div class="text-hidden" :title="row.AccountUserName">
+                  {{ row.AccountUserName }}
+                </div>
+                <div class="text-hidden" :title="row.BankAccount">{{ row.BankAccount }}</div>
+                <div class="text-hidden" :title="row.BankName">{{ row.BankName }}</div>
+              </template>
+              <template v-else-if="column.prop === 'Contacts'">
+                <div class="text-hidden" :title="row.Contacts">
+                  {{ row.Contacts }}
+                </div>
+                <div class="text-hidden" :title="row.MobilePhone">{{ row.MobilePhone }}</div>
+                <div class="text-hidden" :title="row.Telephone">{{ row.Telephone }}</div>
+              </template>
+              <template v-else-if="column.prop === 'QQ'">
+                <div class="text-hidden" :title="row.QQ">
+                  {{ row.QQ }}
+                </div>
+                <div class="text-hidden" :title="row.Mailbox">{{ row.Mailbox }}</div>
+                <div class="text-hidden" :title="row.Wangwang">{{ row.Wangwang }}</div>
+              </template>
+              <template v-else>
+                <div :title="row[column.prop]">
+                  {{ row[column.prop] }}
+                </div>
+              </template>
+            </template>
+          </vxe-column>
         </vxe-table>
       </div>
       <el-pagination
@@ -53,6 +109,10 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { useButtons, useSearchForm, useForm } from '@/composables'
 import { usePageSearchForm, usePageTable, usePageForm, useUploadPageForm } from './composables'
 import * as supplierApi from '@/apis/product/supplier/supplierManagement'
+import {
+  PaymentMethodEnum,
+  SettlementMethodEnum,
+} from '@/enums/product/supplier/supplierManagement'
 
 enum FORM_TYPE {
   ADD = 'ADD',

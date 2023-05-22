@@ -157,7 +157,9 @@
                 </div>
               </template>
               <template v-else>
-                {{ row[column.prop] }}
+                <div :title="row[column.prop]">
+                  {{ row[column.prop] }}
+                </div>
               </template>
             </template>
           </vxe-column>
@@ -834,12 +836,6 @@ getProductCategory()
 </script>
 <style lang="scss" scoped>
 .page-container__content__table {
-  .text-hidden {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
   .image__dropdown {
     :deep(.el-button:focus-visible) {
       outline: unset;
