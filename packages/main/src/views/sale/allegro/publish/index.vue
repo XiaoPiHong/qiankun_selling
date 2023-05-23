@@ -284,7 +284,7 @@ const { buttons } = useButtons([
     text: '设置分类',
     infoIcon: 'button-drop-down',
     onClick: (event) => {
-      tree.show = true
+      tree.show = !tree.show
       event.stopPropagation()
     },
   },
