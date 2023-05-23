@@ -200,6 +200,11 @@ onClickVerifyCode()
     align-items: center;
     justify-content: space-between;
     font-size: 0.8rem;
+
+    :deep(.el-checkbox) {
+      --el-checkbox-checked-text-color: rgb(18 94 254);
+      --el-checkbox-checked-bg-color: rgb(18 94 254);
+    }
   }
 
   .login-form__copyright {

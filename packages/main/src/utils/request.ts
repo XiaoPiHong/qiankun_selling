@@ -1,6 +1,7 @@
 import { ElMessage } from 'element-plus'
 import qs from 'qs'
 import * as loadUtil from '@/utils/load'
+import * as cookieUtil from '@/utils/cookie'
 
 /**
  * 方式 Enum
@@ -77,8 +78,8 @@ export default function request(options: IRequestOptions) {
       if (response.ok) {
         const contentType = response.headers.get('content-type')
         switch (true) {
-          case contentType?.includes(ContentTypeEnum.TEXT_HTML): {
-            // 此处接口返回不规范，应该返回ContentTypeEnum.APPLICATION_JSON，告诉前端解析json
+          case contentType?.includes(ContentTypeEnum.TEXT_HTML): // 此处接口返回不规范，应该返回ContentTypeEnum.APPLICATION_JSON，告诉前端解析json
+          case contentType?.includes(ContentTypeEnum.APPLICATION_JSON): {
             const getBodyPromise = response.json()
             return getBodyPromise.then((body) => {
               // 规范：通过判断 code 字段进行不同处理，此处使用IsSuccess
@@ -87,11 +88,19 @@ export default function request(options: IRequestOptions) {
                   return body
                 case undefined: // 此处后端接口处理不规范，直接返回了内容，接口：/ProductCategory/ReLoad
                   return body
-                case false:
+                case false: {
                   if (body.ResponseError && body.ResponseError.Message) {
-                    return Promise.reject(new Error(body.ResponseError.Message))
+                    switch (body.ResponseError.Code) {
+                      case 6: // 未登录
+                        cookieUtil.tk.remove()
+                        window.location.reload()
+                        return Promise.reject(new Error(body.ResponseError.Message))
+                      default: // 其他
+                        return Promise.reject(new Error(body.ResponseError.Message))
+                    }
                   }
                   return Promise.reject(new Error(body.Message))
+                }
               }
             })
           }

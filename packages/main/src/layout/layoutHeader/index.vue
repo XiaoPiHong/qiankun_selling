@@ -43,7 +43,7 @@
         </template>
       </el-menu>
     </div>
-    <div class="header-container__info">用户信息</div>
+    <div class="header-container__info"></div>
   </div>
 </template>
 <script lang="ts" setup>

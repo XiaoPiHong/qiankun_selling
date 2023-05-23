@@ -863,7 +863,7 @@ getProductCategory()
 
     .more__dropdown__icon {
       display: flex;
-      font-size: 18px;
+      font-size: 25px;
       flex-direction: column;
       justify-content: end;
 
