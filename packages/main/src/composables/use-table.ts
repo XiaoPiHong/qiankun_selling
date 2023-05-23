@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { reactive, toRaw } from 'vue'
 import { Table, TableColumn, IPaginationProps, ITableProps, ISearchFormProps } from '@/models'
 import { usePagination } from '@/composables'
 import { getOrderByParams, getSearchParams } from '@/utils/table-params'
@@ -54,7 +54,7 @@ export default function useTable(tableColumns: TableColumn[], props: IUseTablePr
   }
 
   const onSelectionChange = (checked) => {
-    table.selection = checked.records
+    table.selection = checked.records.map((item) => toRaw(item)) // 取消响应
   }
 
   return {
