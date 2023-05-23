@@ -1,5 +1,11 @@
 @import './standard';
 
+/** 全局颜色变量 */
+:root {
+  --primary-color: var(--el-color-primary);
+  --primary-dark-color: var(--el-color-primary-dark-2);
+}
+
 .app {
   width: 100vw;
   height: 100vh;
@@ -17,7 +23,7 @@
 
   .app-container__header {
     grid-area: app-container__header;
-    background-color: #438eb9;
+    background-color: var(--primary-color);
   }
 
   .app-container__tabs {

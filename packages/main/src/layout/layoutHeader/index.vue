@@ -122,7 +122,7 @@ const onSelectMenu = (name) => {
 
     :deep(.el-menu--horizontal) {
       border-bottom: none;
-      background-color: #438eb9;
+      background-color: var(--primary-color);
 
       > .el-menu-item {
         border-bottom: none;
@@ -135,7 +135,7 @@ const onSelectMenu = (name) => {
       }
 
       > .el-menu-item:not(.is-disabled):hover {
-        background-color: rgb(54 114 148);
+        background-color: var(--primary-dark-color);
       }
 
       > .el-menu-item:not(.is-disabled):focus {
@@ -143,7 +143,7 @@ const onSelectMenu = (name) => {
       }
 
       .el-sub-menu__title:hover {
-        background-color: rgb(54 114 148);
+        background-color: var(--primary-dark-color);
       }
     }
   }
@@ -154,6 +154,6 @@ const onSelectMenu = (name) => {
 }
 
 :deep(.el-menu-item) {
-  color: #438eb9 !important;
+  color: var(--primary-color) !important;
 }
 </style>
