@@ -38,10 +38,11 @@
                 </div>
               </template>
               <template v-else-if="column.prop === 'WebSite'">
-                <div class="text-hidden" :title="row.ArrivalPeriod">{{ row.ArrivalPeriod }}</div>
+                <div class="text-hidden" :title="row.ArrivalPeriod">
+                  {{ row.ArrivalPeriod }}{{ row.WebSite ? '天' : '' }}
+                </div>
                 <div class="text-hidden" :title="row.WebSite">
-                  <a target="_blank" :href="row.WebSite">{{ row.WebSite }}</a
-                  >{{ row.WebSite ? '天' : '' }}
+                  <a target="_blank" :href="row.WebSite">{{ row.WebSite }}</a>
                 </div>
               </template>
               <template v-else-if="column.prop === 'SettlementMethod'">
