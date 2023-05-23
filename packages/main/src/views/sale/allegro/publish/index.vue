@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container">
+  <div>
     <div class="page-container__control">
       <my-button v-for="item in buttons" :key="item.text" :prop="item" />
       <my-search-form :form="searchForm" />

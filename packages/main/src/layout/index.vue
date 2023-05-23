@@ -1,15 +1,19 @@
 <template>
   <div class="app">
     <el-scrollbar style="width: 100%">
-      <div :id="dialogToKey.PAGE_CONTAINER" class="app-container">
-        <!-- <layout-header class="app-container__header" /> -->
-        <!-- <layout-tabs class="app-container__tabs" /> -->
+      <div
+        :id="dialogToKey.PAGE_CONTAINER"
+        :class="{ 'app-container': true, 'app-container-dev': independentDev }"
+      >
+        <layout-header class="app-container__header" v-if="independentDev" />
+        <layout-tabs class="app-container__tabs" v-if="independentDev" />
         <suspense>
           <div class="app-container__main">
             <el-scrollbar style="height: 100%">
               <router-view v-slot="{ Component }">
                 <keep-alive>
                   <component
+                    :class="{ 'page-container': true, 'page-container-dev': independentDev }"
                     :id="dialogToKey.PAGE_TABS_CONTAINER"
                     :key="route.path"
                     :is="Component"
@@ -17,6 +21,7 @@
                   />
                 </keep-alive>
                 <component
+                  :class="{ 'page-container': true, 'page-container-dev': independentDev }"
                   :id="dialogToKey.PAGE_TABS_CONTAINER"
                   :key="route.path"
                   :is="Component"
@@ -31,43 +36,29 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-// import layoutHeader from './layoutHeader/index.vue'
-// import layoutTabs from './layoutTabs/index.vue'
+import layoutHeader from './layoutHeader/index.vue'
+import layoutTabs from './layoutTabs/index.vue'
 import * as dialogToKey from '@/configs/dialog-to-key'
 
+// const { VITE_ENGINEERING_URL } = import.meta.env
 const route = useRoute()
+// const independentDev = computed(
+//   () => `${window.location.protocol}//${window.location.host}` === VITE_ENGINEERING_URL
+// )
+const independentDev = computed(() => window.parent.length === 0)
 </script>
-<style lang="scss" scoped>
-.app {
-  width: 100vw;
-  height: 100vh;
+<style lang="scss">
+.app-container-dev {
+  grid-template-areas:
+    'app-container__header'
+    'app-container__tabs'
+    'app-container__main';
+  grid-template-rows: 46px 40px calc(100vh - 46px - 40px);
 }
 
-.app-container {
-  position: relative;
-  display: grid;
-  grid-template-areas: 'app-container__main';
-  grid-template-rows: calc(100vh);
-  grid-template-columns: 1fr;
-  width: 100vw;
-  height: 100vh;
-  min-width: 1200px;
-
-  .app-container__header {
-    grid-area: app-container__header;
-    background-color: #438eb9;
-  }
-
-  .app-container__tabs {
-    grid-area: app-container__tabs;
-    background-color: #eff3f8;
-  }
-
-  .app-container__main {
-    grid-area: app-container__main;
-    transition: margin-left 0.5s ease;
-    overflow: hidden; /** 防止触发app.vue纵向滚动条 */
-  }
+.page-container-dev {
+  height: calc(100vh - 46px - 40px);
 }
 </style>

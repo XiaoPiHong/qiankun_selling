@@ -1,5 +1,37 @@
 @import './standard';
 
+.app {
+  width: 100vw;
+  height: 100vh;
+}
+
+.app-container {
+  position: relative;
+  display: grid;
+  grid-template-areas: 'app-container__main';
+  grid-template-rows: calc(100vh);
+  grid-template-columns: 1fr;
+  width: 100vw;
+  height: 100vh;
+  min-width: 1200px;
+
+  .app-container__header {
+    grid-area: app-container__header;
+    background-color: #438eb9;
+  }
+
+  .app-container__tabs {
+    grid-area: app-container__tabs;
+    background-color: #eff3f8;
+  }
+
+  .app-container__main {
+    grid-area: app-container__main;
+    transition: margin-left 0.5s ease;
+    overflow: hidden; /** 防止触发app.vue纵向滚动条 */
+  }
+}
+
 .page-container {
   box-sizing: border-box;
   height: calc(100vh);
